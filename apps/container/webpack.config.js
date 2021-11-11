@@ -7,6 +7,10 @@ module.exports = (config, context) => {
   nrwlConfig(config);
   return {
     ...config,
+    optimization: {
+      ...config.optimization,
+      runtimeChunk: false
+    },
     plugins: [
       ...config.plugins,
       new ModuleFederationPlugin({
@@ -20,6 +24,11 @@ module.exports = (config, context) => {
         },
       }),
     ],
+    output: {
+      uniqueName: 'app1',
+      publicPath: 'auto',
+      clean: true,
+    }
   };
 };
 
